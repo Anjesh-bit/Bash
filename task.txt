@@ -1,0 +1,26 @@
+
+
+
+BA-64 Cordova Plugin Version Management
+
+We have a script in the repo:  scripts/update-env.sh
+
+This script uninstalls all the Cordova plugins and platforms.  Then, it installs them all, pulling down the latest version.  
+
+This means we could do all our QA and everything looks good.  Then, later, at Release time, a newer version of a plugin is pulled down as part of the build, and pushed out to the production App...not thoroughly tested.  Also, there's no way to know that 2 developers are running/testing the exact same versions.
+
+So we need a "very basic, super simple" version management system.  This can be manually managed in the source files to keep it very simple and quick to develop.  Please do the following..
+
+    Break update-env.sh into 2 scripts:  clean-cordova.sh and init-cordova.sh
+
+    Keep it fast and simple.  It's okay if the same code is copied into the two scripts.  Fast, simple and dirty is okay for these bash scripts.
+
+    Have a third file, cordova-env.sh to define all the plugins, platforms, and their versions, so the other 2 scripts can source it.
+
+    the cordova-env.sh file should have the plugin versions hard-coded in it.
+
+    the init-cordova.sh should accept a command-line parameter telling it to 1.) install the hard-coded versions (Default action), or 2.) install the latest versions
+
+    initialize the new hard-coded file versions with the current latest versions.  Moving forward, I will manually update the plugin versions after we have tested and verified them.  
+
+    hard-code versions of the platforms (ios, android) as well.
