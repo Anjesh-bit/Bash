@@ -78,7 +78,7 @@ echo "*** adding plugins *********************"
 echo "****************************************"
 echo " "
 
-HARDCODED= sh /BashFile/cordova-env.sh
+HARDCODED= cordova-env.sh
 echo "Installing the hardcoded version"
 
 if [$HARDCODED]; then
