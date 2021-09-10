@@ -78,7 +78,7 @@ echo "*** adding plugins *********************"
 echo "****************************************"
 echo " "
 
-HARDCODED= sh /scripts/cordova-env.sh
+HARDCODED= sh /BashFile/cordova-env.sh
 echo "Installing the hardcoded version"
 
 if [$HARDCODED]; then
