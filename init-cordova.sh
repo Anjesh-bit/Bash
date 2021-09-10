@@ -77,23 +77,18 @@ echo "****************************************"
 echo "*** adding plugins *********************"
 echo "****************************************"
 echo " "
+ 
 
-HARDCODED= cordova-env.sh
+
+read -rsn1 input
+echo "Press 1 to install the hardcoded version or press 2 to install latest"
+if [ "$input" = "1" ]; then
+ 
 echo "Installing the hardcoded version"
+HARDCODED= scripts/cordova-env.sh
 
-if [$HARDCODED]; then
-
-    for HARDCODED in "${HARDCODED[@]}"
-do
- # add the plugin
-    cmd="ionic cordova plugin add $HARDCODED"
-    echo "Executing [$cmd]"
-    $cmd
-done
-fi
-
-
-# Add Normal Plugins
+    elif [ "$input" = "2" ]; then 
+    # Add Normal Plugins
 echo "Installing the latest version"
 for PLUGIN in "${PLUGINS[@]}"
 do
@@ -102,6 +97,14 @@ do
     echo "Executing [$cmd]"
     $cmd
 done
+    
+fi
+echo "wait a minute...initializing hardcoded with latest version...."
+
+HARDCODED=PLUGIN
+
+
+
 
 # Add Special Plugins
 ionic cordova plugin add git+ssh://git@github.com:BirdieApps/cordova-plugin-geolocation.git#birdieapps
